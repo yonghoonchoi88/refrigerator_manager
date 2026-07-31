@@ -1,0 +1,3 @@
+from refrigerator_manager import run_refrigerator_manager
+
+run_refrigerator_manager()
