@@ -1,6 +1,4 @@
 from datetime import date
-from unittest import case
-
 from model.refrigerator import Food
 
 refrigerator = []
@@ -25,25 +23,6 @@ def main_menu():
     """)
 
 
-#### 테스트/시연용 자동 음식 넣기.
-def auto_in():
-    f1date = date.strptime("2026-09-01", "%Y-%m-%d")
-    f1 = Food(name="사과", price=1500, calories=140, exp_date=f1date)
-    refrigerator.append(f1)
-    f2date = date.strptime("2026-07-01", "%Y-%m-%d")
-    f2 = Food(name="망고", price=4500, calories=340, exp_date=f2date)
-    refrigerator.append(f2)
-    f3date = date.strptime("2026-09-01", "%Y-%m-%d")
-    f3 = Food(name="햄버거", price=10000, calories=950, exp_date=f3date)
-    refrigerator.append(f3)
-    f4date = date.strptime("2026-09-01", "%Y-%m-%d")
-    f4 = Food(name="감자샐러드", price=7500, calories=650, exp_date=f4date)
-    refrigerator.append(f4)
-    f5date = date.strptime("2026-06-01", "%Y-%m-%d")
-    f5 = Food(name="피자", price=13000, calories=1200, exp_date=f5date)
-    refrigerator.append(f5)
-    print("--------- 냉장고에 자동 음식 넣기 완료 ---------")
-
 # 1. 냉장고에 음식 넣기 // name, price, calories, exp_date)
 def food_in():
     print("--------------- 냉장고에 음식 넣기 ---------------")
@@ -51,7 +30,7 @@ def food_in():
     price = int(input("음식 가격(원) : "))
     calories = int(input("음식 칼로리(Kcal) : "))
     input_date = input("음식 유통기한(XXXX-XX-XX): ")
-    exp_date = date.strptime(input_date, "%Y-%m-%d")
+    exp_date = date.fromisoformat(input_date)
     food = Food(name, price, calories, exp_date)
     refrigerator.append(food)
     print("------------- 냉장고에 음식 넣기 완료 ------------")
@@ -161,4 +140,24 @@ def run_refrigerator_manager():
         case "0":
             return True
         case _:
-            ("잘못된 입력입니다.")
+            print("잘못된 입력입니다.")
+
+
+#### 테스트/시연용 자동 음식 넣기.
+def auto_in():
+    f1date = date.fromisoformat("2026-09-01")
+    f1 = Food(name="사과", price=1500, calories=140, exp_date=f1date)
+    refrigerator.append(f1)
+    f2date = date.fromisoformat("2026-07-01")
+    f2 = Food(name="망고", price=4500, calories=340, exp_date=f2date)
+    refrigerator.append(f2)
+    f3date = date.fromisoformat("2026-09-01")
+    f3 = Food(name="햄버거", price=10000, calories=950, exp_date=f3date)
+    refrigerator.append(f3)
+    f4date = date.fromisoformat("2026-09-01")
+    f4 = Food(name="감자샐러드", price=7500, calories=650, exp_date=f4date)
+    refrigerator.append(f4)
+    f5date = date.fromisoformat("2026-07-01")
+    f5 = Food(name="피자", price=13000, calories=1200, exp_date=f5date)
+    refrigerator.append(f5)
+    print("--------- 냉장고에 자동 음식 넣기 완료 ---------")
