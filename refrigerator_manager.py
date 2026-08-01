@@ -80,6 +80,7 @@ def food_detail():
     print(f"{number}.  | {refrigerator[number]}")
     print("------------- 냉장고 음식 상세 조회 완료 --------------")
 
+
 # 4. 음식 섭취
 def eat_food():
     global food_consumed_kcal
@@ -96,6 +97,7 @@ def eat_food():
     print(f"총 섭취 칼로리 :  {food_consumed_kcal} Kcal")
     print("-------------- 냉장고 음식 섭취 완료 -------------")
 
+
 # 5. 음식 폐기
 def disposal_food():
     global wasted_money
@@ -111,6 +113,7 @@ def disposal_food():
         del refrigerator[number]
     print("-------------- 상한 음식 폐기 완료 -------------")
 
+
 # 6. 음식 섭취 리스트
 def food_consumed_list():
     print("--------------- 섭취 음식 목록 ---------------")
@@ -123,6 +126,7 @@ def food_consumed_list():
     print(f"총 섭취 칼로리 :  {food_consumed_kcal} Kcal")
     print("------------ 섭취 음식 목록 조회 완료 ------------")
 
+
 # 7. 음식 폐기 리스트
 def food_wasted_list():
     print("--------------- 폐기 음식 목록 ---------------")
@@ -134,6 +138,7 @@ def food_wasted_list():
         print(f"{idx}.  |  {food.name} / {food.price}")
     print("음식 폐기로 낭비된 총액 : ", wasted_money)
     print("------------ 폐기 음식 목록 조회 완료 ------------")
+
 
 def run_refrigerator_manager():
     number = input("번호 입력 : ")
