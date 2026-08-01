@@ -4,8 +4,10 @@ from unittest import case
 from model.refrigerator import Food
 
 refrigerator = []
-ate_list = []
+consumed_list = []
 garbage = []
+food_consumed_kcal = 0
+wasted_money = 0
 
 
 def main_menu():
@@ -17,6 +19,8 @@ def main_menu():
     3. 냉장고 음식 조회
     4. 냉장고 음식 섭취
     5. 냉장고 음식 폐기
+    6. 섭취 음식 목록
+    7. 폐기 음식 목록
     """)
 
 
@@ -53,12 +57,56 @@ def food_detail():
 
 # 4. 음식 섭취
 def eat_food():
+    global food_consumed_kcal
     print("--------------- 냉장고 음식 섭취 ---------------")
+    number = int(input("음식 번호 : "))
+    result = refrigerator[number].if_food_expired()
+    if result:
+        print("상한 음식은 섭취 할수 없습니다.")
+    else:
+        food_consumed_kcal += refrigerator[number].calories
+        consumed_list.append(refrigerator[number])
+        del refrigerator[number]
+    print("총 섭취 칼로리 : ", food_consumed_kcal)
 
 
 # 5. 음식 폐기
 def disposal_food():
+    global wasted_money
     print("--------------- 상한 음식 폐기 ---------------")
+    number = int(input("음식 번호 : "))
+    result = refrigerator[number].if_food_expired()
+    if result != True:
+        print("유통 기한이 남은 음식은 폐기 할수 없습니다.")
+    else:
+        wasted_money += refrigerator[number].price
+        garbage.append(refrigerator[number])
+        del refrigerator[number]
+    print("음식 폐기로 낭비된 총액 : ", wasted_money)
+
+
+# 6. 음식 섭취 리스트
+def food_consumed_list():
+    print("--------------- 섭취 음식 목록 ---------------")
+    if len(consumed_list) < 1:
+        print("섭취 음식이 없습니다.")
+        return
+    print("번호 |  음식 이름  | 칼로리")
+    for idx, food in enumerate(consumed_list):
+        print(f"{idx}. {food.name}  {food.calories}")
+    print("총 섭취 칼로리 : ", food_consumed_kcal)
+
+
+# 7. 음식 폐기 리스트
+def food_wasted_list():
+    print("--------------- 폐기 음식 목록 ---------------")
+    if len(garbage) < 1:
+        print("폐기 음식이 없습니다.")
+        return
+    print("번호 |  음식 이름  | 칼로리")
+    for idx, food in enumerate(garbage):
+        print(f"{idx}. {food.name}  {food.calories}")
+    print("음식 폐기로 낭비된 총액 : ", wasted_money)
 
 
 def run_refrigerator_manager():
@@ -74,6 +122,10 @@ def run_refrigerator_manager():
             eat_food()
         case "5":
             disposal_food()
+        case "6":
+            food_consumed_list()
+        case "7":
+            food_wasted_list()
         case "0":
             return True
         case _:
