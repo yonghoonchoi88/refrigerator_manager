@@ -42,7 +42,7 @@ def auto_in():
     f5date = date.strptime("2026-06-01", "%Y-%m-%d")
     f5 = Food(name="피자", price=13000, calories=1200, exp_date=f5date)
     refrigerator.append(f5)
-
+    print("--------- 냉장고에 자동 음식 넣기 완료 ---------")
 
 # 1. 냉장고에 음식 넣기 // name, price, calories, exp_date)
 def food_in():
@@ -54,7 +54,7 @@ def food_in():
     exp_date = date.strptime(input_date, "%Y-%m-%d")
     food = Food(name, price, calories, exp_date)
     refrigerator.append(food)
-    print("-------------- 냉장고에 음식 넣기 완료 -------------")
+    print("------------- 냉장고에 음식 넣기 완료 ------------")
 
 
 # 2. 냉장고 음식 목록
@@ -69,7 +69,7 @@ def refrigerator_food_list():
         if refrigerator[idx].if_food_expired():
             line += "  (상한음식)"
         print(line)
-    print("------------ 냉장고 음식 목록 조회 완료 ------------")
+    print("----------- 냉장고 음식 목록 조회 완료 -----------")
 
 
 # 3. 음식 조회
@@ -78,7 +78,7 @@ def food_detail():
     number = int(input("음식 번호 : "))
     print("번호 | 음식")
     print(f"{number}.  | {refrigerator[number]}")
-    print("------------- 냉장고 음식 상세 조회 완료 --------------")
+    print("------------ 냉장고 음식 상세 조회 완료 -------------")
 
 
 # 4. 음식 섭취
@@ -92,10 +92,9 @@ def eat_food():
     else:
         food_consumed_kcal += refrigerator[number].calories
         consumed_list.append(refrigerator[number])
-        print(f"{refrigerator[number].name} 섭취로 획득한 칼로리 :  {refrigerator[number].wasted_money} Kcal")
+        print(f"{refrigerator[number].name} 섭취로 획득한 칼로리 :  {refrigerator[number].calories} Kcal")
         del refrigerator[number]
-    print(f"총 섭취 칼로리 :  {food_consumed_kcal} Kcal")
-    print("-------------- 냉장고 음식 섭취 완료 -------------")
+    print("------------- 냉장고 음식 섭취 완료 ------------")
 
 
 # 5. 음식 폐기
@@ -109,9 +108,9 @@ def disposal_food():
     else:
         wasted_money += refrigerator[number].price
         garbage.append(refrigerator[number])
-        print(f"{refrigerator[number].name} 폐기로 낭비된 금액 :  {refrigerator[number].wasted_money} 원")
+        print(f"{refrigerator[number].name} 폐기로 낭비된 금액 :  {refrigerator[number].price} 원")
         del refrigerator[number]
-    print("-------------- 상한 음식 폐기 완료 -------------")
+    print("------------- 상한 음식 폐기 완료 ------------")
 
 
 # 6. 음식 섭취 리스트
@@ -122,9 +121,9 @@ def food_consumed_list():
         return
     print("번호 |  음식 이름 / 칼로리(Kcal)")
     for idx, food in enumerate(consumed_list):
-        print(f"{idx}.  |  {food.name} / {food.calories}")
+        print(f"{idx}.  |  {food.name} / {food.calories} Kcal")
     print(f"총 섭취 칼로리 :  {food_consumed_kcal} Kcal")
-    print("------------ 섭취 음식 목록 조회 완료 ------------")
+    print("----------- 섭취 음식 목록 조회 완료 -----------")
 
 
 # 7. 음식 폐기 리스트
@@ -135,9 +134,9 @@ def food_wasted_list():
         return
     print("번호 |  음식 이름 / 가격(원)")
     for idx, food in enumerate(garbage):
-        print(f"{idx}.  |  {food.name} / {food.price}")
-    print("음식 폐기로 낭비된 총액 : ", wasted_money)
-    print("------------ 폐기 음식 목록 조회 완료 ------------")
+        print(f"{idx}.  |  {food.name} / {food.price} 원")
+    print(f"음식 폐기로 낭비된 총액 :  {wasted_money} 원")
+    print("----------- 폐기 음식 목록 조회 완료 -----------")
 
 
 def run_refrigerator_manager():
