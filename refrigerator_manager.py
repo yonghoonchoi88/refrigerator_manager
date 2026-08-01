@@ -23,9 +23,27 @@ def main_menu():
     7. 폐기 음식 목록
     """)
 
+#### 테스트/시연용 자동 음식 넣기.
+def auto_in():
+    f1date = date.strptime("2026-09-01", "%Y-%m-%d")
+    f1 = Food(name="사과", price=1500, calories=140, exp_date = f1date)
+    refrigerator.append(f1)
+    f2date = date.strptime("2026-07-01", "%Y-%m-%d")
+    f2 = Food(name="망고", price=4500, calories=340, exp_date=f2date)
+    refrigerator.append(f2)
+    f3date = date.strptime("2026-09-01", "%Y-%m-%d")
+    f3 = Food(name="햄버거", price=10000, calories=950, exp_date=f3date)
+    refrigerator.append(f3)
+    f4date = date.strptime("2026-09-01", "%Y-%m-%d")
+    f4 = Food(name="감자샐러드", price=7500, calories=650, exp_date=f4date)
+    refrigerator.append(f4)
+    f5date = date.strptime("2026-06-01", "%Y-%m-%d")
+    f5 = Food(name="피자", price=13000, calories=1200, exp_date=f5date)
+    refrigerator.append(f5)
 
 # 1. 냉장고에 음식 넣기 // name, price, calories, exp_date)
 def food_in():
+    auto_in()
     print("--------------- 냉장고에 음식 넣기 ---------------")
     name = input("음식 이름 : ")
     price = int(input("음식 가격(원) : "))
@@ -42,17 +60,20 @@ def refrigerator_food_list():
     if len(refrigerator) < 1:
         print("냉장고가 비었습니다.")
         return
-    print("번호 |  ")
+    print("번호 | 음식")
     for idx, food in enumerate(refrigerator):
-        print(f"{idx}. {food.name}")
+        line = f"{idx}.  | {food.name}"
+        if refrigerator[idx].if_food_expired():
+            line += "  (상한음식)"
+        print(line)
 
 
 # 3. 음식 조회
 def food_detail():
     print("--------------- 냉장고 음식 상세 조회 ---------------")
     number = int(input("음식 번호 : "))
-    print("번호 |  ")
-    print(f"{number}. {refrigerator[number]}")
+    print("번호 | 음식")
+    print(f"{number}.  | {refrigerator[number]}")
 
 
 # 4. 음식 섭취
@@ -91,9 +112,9 @@ def food_consumed_list():
     if len(consumed_list) < 1:
         print("섭취 음식이 없습니다.")
         return
-    print("번호 |  음식 이름  | 칼로리")
+    print("번호 |  음식 이름 / 칼로리")
     for idx, food in enumerate(consumed_list):
-        print(f"{idx}. {food.name}  {food.calories}")
+        print(f"{idx}.  |  {food.name} / {food.calories}")
     print("총 섭취 칼로리 : ", food_consumed_kcal)
 
 
@@ -103,9 +124,9 @@ def food_wasted_list():
     if len(garbage) < 1:
         print("폐기 음식이 없습니다.")
         return
-    print("번호 |  음식 이름  | 칼로리")
+    print("번호 |  음식 이름 / 가격")
     for idx, food in enumerate(garbage):
-        print(f"{idx}. {food.name}  {food.calories}")
+        print(f"{idx}.  |  {food.name} / {food.price}")
     print("음식 폐기로 낭비된 총액 : ", wasted_money)
 
 
