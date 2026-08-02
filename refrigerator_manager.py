@@ -147,34 +147,19 @@ def run_refrigerator_manager():
 
 #### 테스트/시연용 자동 음식 넣기.
 def auto_in():
-    f1date = date.fromisoformat("2026-09-01")
-    f1 = Food(name="사과", price=1500, calories=140, exp_date=f1date)
-    refrigerator.append(f1)
-    f2date = date.fromisoformat("2026-07-21")
-    f2 = Food(name="망고", price=4500, calories=340, exp_date=f2date)
-    refrigerator.append(f2)
-    f3date = date.fromisoformat("2026-09-21")
-    f3 = Food(name="햄버거", price=10000, calories=950, exp_date=f3date)
-    refrigerator.append(f3)
-    f4date = date.fromisoformat("2026-09-15")
-    f4 = Food(name="감자샐러드", price=7500, calories=650, exp_date=f4date)
-    refrigerator.append(f4)
-    f5date = date.fromisoformat("2026-07-01")
-    f5 = Food(name="피자", price=13000, calories=1200, exp_date=f5date)
-    refrigerator.append(f5)
-    f6date = date.fromisoformat("2026-10-01")
-    f6 = Food(name="짬뽕", price=11500, calories=1000, exp_date=f6date)
-    refrigerator.append(f6)
-    f7date = date.fromisoformat("2026-07-12")
-    f7 = Food(name="배", price=1700, calories=200, exp_date=f7date)
-    refrigerator.append(f7)
-    f8date = date.fromisoformat("2026-06-12")
-    f8 = Food(name="대추", price=1700, calories=275, exp_date=f8date)
-    refrigerator.append(f8)
-    f9date = date.fromisoformat("2026-10-12")
-    f9 = Food(name="복숭아", price=8900, calories=325, exp_date=f9date)
-    refrigerator.append(f9)
-    f10date = date.fromisoformat("2027-11-13")
-    f10 = Food(name="콜라", price=2000, calories=565, exp_date=f10date)
-    refrigerator.append(f10)
+    foods = [
+        ("사과", 1500, 140, "2026-09-01"),
+        ("망고", 4500, 340, "2026-07-21"),
+        ("햄버거", 10000, 950, "2026-09-21"),
+        ("감자샐러드", 7500, 650, "2026-09-15"),
+        ("피자", 13000, 1200, "2026-07-01"),
+        ("짬뽕", 11500, 1000, "2026-10-01"),
+        ("배", 1700, 200, "2026-07-12"),
+        ("대추", 1700, 275, "2026-06-12"),
+        ("복숭아", 8900, 325, "2026-10-12"),
+        ("콜라", 2000, 565, "2027-11-13")
+    ]
+    for name, price, calories, exp_date in foods:
+        refrigerator.append(Food(name=name, price=price, calories=calories, exp_date=date.fromisoformat(exp_date)))
+
     print("--------- 냉장고에 자동 음식 넣기 완료 ---------")
