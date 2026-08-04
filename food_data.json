@@ -34,5 +34,17 @@
     "price": 2000,
     "calories": 565,
     "exp_date": "2027-11-13"
+  },
+  {
+    "name": "김치",
+    "price": 2000,
+    "calories": 240,
+    "exp_date": "2029-02-03"
+  },
+  {
+    "name": "탕수육",
+    "price": 14000,
+    "calories": 1500,
+    "exp_date": "2026-08-01"
   }
 ]
