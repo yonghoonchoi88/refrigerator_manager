@@ -1,0 +1,38 @@
+[
+  {
+    "name": "감자샐러드",
+    "price": 7500,
+    "calories": 650,
+    "exp_date": "2026-09-15"
+  },
+  {
+    "name": "짬뽕",
+    "price": 11500,
+    "calories": 1000,
+    "exp_date": "2026-10-01"
+  },
+  {
+    "name": "배",
+    "price": 1700,
+    "calories": 200,
+    "exp_date": "2026-07-12"
+  },
+  {
+    "name": "대추",
+    "price": 1700,
+    "calories": 275,
+    "exp_date": "2026-06-12"
+  },
+  {
+    "name": "복숭아",
+    "price": 8900,
+    "calories": 325,
+    "exp_date": "2026-10-12"
+  },
+  {
+    "name": "콜라",
+    "price": 2000,
+    "calories": 565,
+    "exp_date": "2027-11-13"
+  }
+]
