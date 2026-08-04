@@ -20,7 +20,7 @@ def main_menu():
 
 # 1. 냉장고에 음식 넣기 // name, price, calories, exp_date)
 def food_in():
-    food_list = select_list()
+    food_list = select_list("food_data.json")
     print("--------------- 냉장고에 음식 넣기 ---------------")
     with open("food_data.json", "w", encoding="utf-8") as f:
         name = input("음식 이름 : ")
@@ -35,22 +35,12 @@ def food_in():
     print("------------- 냉장고에 음식 넣기 완료 ------------")
 
 
-def select_list():
-    with open("food_data.json", "r", encoding="utf-8") as f:
-        food_list = json.load(f)
-    return food_list
-
-
-def select_consumed_list():
-    with open("consumed_data.json", "r", encoding="utf-8") as f:
-        consumed_list = json.load(f)
-    return consumed_list
-
-
-def select_wasted_list():
-    with open("wasted_data.json", "r", encoding="utf-8") as f:
-        wasted_list = json.load(f)
-    return wasted_list
+def select_list(filename):
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
 
 
 # 2. 냉장고 음식 목록
@@ -89,7 +79,7 @@ def eat_food(food_list):
         print(f"음식 : {food.name} / 유통기한 : {food.exp_date}")
         print("유통기한이 지난 음식은 섭취 할수 없습니다.")
     else:
-        consumed_food_list = select_consumed_list()
+        consumed_food_list = select_list("consumed_data.json")
         with open("consumed_data.json", "w", encoding="utf-8") as f:
             consumed_food = food
             consumed_food_dict = consumed_food.to_dict()
@@ -112,7 +102,7 @@ def disposal_food(food_list):
         print(f"음식 : {food.name} / 유통기한 : {food.exp_date}")
         print("유통기한이 남은 음식은 폐기 할수 없습니다.")
     else:
-        wasted_food_list = select_wasted_list()
+        wasted_food_list = select_list("wasted_data.json")
         with open("wasted_data.json", "w", encoding="utf-8") as f:
             wasted_food = food
             wasted_food_dict = wasted_food.to_dict()
@@ -163,22 +153,22 @@ def run_refrigerator_manager():
         case "1":
             food_in()
         case "2":
-            food_list = select_list()
+            food_list = select_list("food_data.json")
             refrigerator_food_list(food_list)
         case "3":
-            food_list = select_list()
+            food_list = select_list("food_data.json")
             food_detail(food_list)
         case "4":
-            food_list = select_list()
+            food_list = select_list("food_data.json")
             eat_food(food_list)
         case "5":
-            food_list = select_list()
+            food_list = select_list("food_data.json")
             disposal_food(food_list)
         case "6":
-            consumed_list = select_consumed_list()
+            consumed_list = select_list("consumed_data.json")
             food_consumed_list(consumed_list)
         case "7":
-            wasted_list = select_consumed_list()
+            wasted_list = select_list("wasted_data.json")
             food_wasted_list(wasted_list)
         case "8":
             auto_in()
@@ -190,7 +180,7 @@ def run_refrigerator_manager():
 
 #### 테스트/시연용 자동 음식 넣기.
 def auto_in():
-    food_list = select_list()
+    food_list = select_list("food_data.json")
     with open("food_data.json", "w", encoding="utf-8") as f:
         foods = [
             ("사과", 1500, 140, "2026-09-01"),

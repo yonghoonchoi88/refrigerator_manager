@@ -10,5 +10,11 @@
     "price": 13000,
     "calories": 1200,
     "exp_date": "2026-07-01"
+  },
+  {
+    "name": "배",
+    "price": 1700,
+    "calories": 200,
+    "exp_date": "2026-07-12"
   }
 ]
